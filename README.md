@@ -1,22 +1,17 @@
-**Sx05RE**
-An emulation (retro) fork for Sx05 devices, Most of the code is from [Kszaq's LE](https://github.com/kszaq/LibreELEC.tv) and [Lakka](https://github.com/libretro/Lakka-LibreELEC), I just combine them with some changes, add [Emulationstation](https://github.com/RetroPie/EmulationStation) and some standalone emulators ([Advancemame](https://github.com/amadvance/advancemame), [PPSSPP](https://github.com/hrydgard/ppsspp), Reicast and others). 
+**ScottELEC**
+
+A fork of Niabi's Sx05RE retro gaming setup, Most of the code is from [Niabi's Sx05RE](https://github.com/shantigilbert/LibreELEC.tv) [Kszaq's LE](https://github.com/kszaq/LibreELEC.tv) and [Lakka](https://github.com/libretro/Lakka-LibreELEC), I have been spending a long time modifying the code to get this system working on S805 devices, for now I am working on Amlogic S805 boxes that use the HD18Q board (All-black MXQ boxes) but will eventually release for other boards aswell.
+
+In addition to Niabi's work that includes EmulationStation, RetroArch etc. I have included a RetroArch launcher that can be used to launch the RetroArch UI directly from Kodi, I also aim to include a pre-setup version of Zach Morris' Internet Archive ROM Launcher.
 
 To build use:  
 
 sudo apt update && sudo apt upgrade  
 sudo apt install gcc make git gcc-multilib lib32stdc++6  
 sudo dpkg-reconfigure dash (select no, to install bash as the default)  
-git clone https://github.com/shantigilbert/LibreELEC.tv.git Sx05RE  
+git clone https://github.com/themxqproject/LibreELEC.tv.git ScottELEC  
 cd Sx05RE  
-make image PROJECT=S905 ARCH=arm DISTRO=Sx05RE  
-
-I use Ubuntu 16.04.3 LTS
-
-Please note, this is mostly a personal project made for my S905 Box (Mini M8S) I can't guarantee that it will work for your box as I don't own any other boxes, don't expect changes to fit your personal needs, but I do appreciate any PRs, help on testing other boxes and fixing issues.  
-
-I have a very crappy laptop since my main one burned out, and I work on this project on my personal time, I don't make any money out of it, so it takes a while for me to properly test any changes, but I will do my best to help you fix issues you might have on other boxes limited to my time and experience. 
-
-Happy retrogaming! 
+make image PROJECT=S805 SYSTEM=HD18Q ARCH=arm DISTRO=Sx05RE  
 
 # LibreELEC
 
