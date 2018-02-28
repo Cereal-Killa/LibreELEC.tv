@@ -81,7 +81,7 @@ if [ ! -d "/storage/roms" ] || [ ! -d "/storage/roms2" ]; then
 fi
 
 #name of the file we need to put in the roms folder in your USB or SDCARD 
-ROMFILE="sx05reroms"
+ROMFILE="scottelecroms"
 
 
 # we look for the file in the rompath
@@ -138,6 +138,6 @@ systemctl start smbd
 touch  /var/lock/start.kodi
 
  #if you don't want EmulationStation to start first, comment the next 3 lines
- rm -rf /var/lock/start.kodi
- touch /var/lock/start.games
- systemctl start emustation
+ #rm -rf /var/lock/start.kodi
+ #touch /var/lock/start.games
+ #systemctl start emustation

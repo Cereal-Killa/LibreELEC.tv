@@ -60,3 +60,9 @@ mkdir -p $INSTALL/usr/share/kodi/addons/
 #cp $PKG_DIR/asound.conf/asound.conf $INSTALL/usr/config/asound.conf/asound.conf
 
 }
+
+post_makeinstall_target() {
+  mkdir -p $INSTALL/usr/bin
+    chmod +x $INSTALL/usr/bin/*
+
+}
