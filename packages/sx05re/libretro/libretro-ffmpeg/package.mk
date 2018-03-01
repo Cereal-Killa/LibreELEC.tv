@@ -19,7 +19,7 @@
 ################################################################################
 
 PKG_NAME="libretro-ffmpeg"
-PKG_VERSION=""
+PKG_VERSION="825db4f"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="LGPLv2, GPLv2"
