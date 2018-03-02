@@ -8,7 +8,7 @@
   DISTRONAME="ScottELEC"
 
 # short project description
-  DESCRIPTION="An emulation build for Sx05 Devices."
+  DESCRIPTION="An emulation build for S805 Devices based on Sx05RE."
 
 # Welcome Message for e.g. SSH Server (up to 5 Lines)
   GREETING0="##############################################"
