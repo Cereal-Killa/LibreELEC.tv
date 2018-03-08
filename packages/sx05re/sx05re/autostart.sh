@@ -64,6 +64,36 @@ esac
 #since the ROMS folder is not getting created at boot, we check if it exists, if it doesn't then we create it. 
 if [ ! -d "/storage/roms" ] || [ ! -d "/storage/roms2" ]; then
   mkdir /storage/roms
+  mkdir /storage/roms/atari2600
+  mkdir /storage/roms/atari5200
+  mkdir /storage/roms/atari7800
+  mkdir /storage/roms/atarilynx
+  mkdir /storage/roms/c64
+  mkdir /storage/roms/dreamcast
+  mkdir /storage/roms/fba
+  mkdir /storage/roms/fds
+  mkdir /storage/roms/gamegear
+  mkdir /storage/roms/gb
+  mkdir /storage/roms/gba
+  mkdir /storage/roms/gbc
+  mkdir /storage/roms/mame
+  mkdir /storage/roms/mame-advmame
+  mkdir /storage/roms/mastersystem
+  mkdir /storage/roms/megadrive
+  mkdir /storage/roms/msx
+  mkdir /storage/roms/n64
+  mkdir /storage/roms/neogeo
+  mkdir /storage/roms/nes
+  mkdir /storage/roms/pc
+  mkdir /storage/roms/pcengine
+  mkdir /storage/roms/psp
+  mkdir /storage/roms/psx
+  mkdir /storage/roms/scummvm
+  mkdir /storage/roms/sega32x
+  mkdir /storage/roms/segacd
+  mkdir /storage/roms/snes
+  mkdir /storage/roms/videopac
+  mkdir /storage/roms/zxspectrum
 fi
 
 #name of the file we need to put in the roms folder in your USB or SDCARD 
