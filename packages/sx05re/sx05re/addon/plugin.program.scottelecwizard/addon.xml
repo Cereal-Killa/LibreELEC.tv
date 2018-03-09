@@ -9,7 +9,7 @@
   <extension point="xbmc.service" library="startup.py" start="startup" />
   <extension point="xbmc.addon.metadata">
     <summary lang="en">ScottELEC IARL Wizard</summary>
-    <description lang="en">This simple wizard will install and configure everything you need to easily use Zach Morris' IARL (Internet Archive ROM Launcher) for devices running ScottELEC and Sx05RE with minimal setup.</description>
+    <description lang="en">This simple tool will install and configure the Internet Archive ROM Launcher for ScottELEC and Sx05RE systems.</description>
     <platform>all</platform>
   </extension>
 </addon>
