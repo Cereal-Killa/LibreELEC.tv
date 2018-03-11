@@ -18,34 +18,38 @@
 #  http://www.gnu.org/copyleft/gpl.html
 ################################################################################
 
-PKG_NAME="gstreamer"
-PKG_VERSION="1.12.0"
+PKG_NAME="scraper"
+PKG_VERSION="1.4.5"
 PKG_REV="1"
 PKG_ARCH="any"
-PKG_LICENSE="GPL"
-PKG_SITE="https://gstreamer.freedesktop.org"
-PKG_URL="https://gstreamer.freedesktop.org/src/$PKG_NAME/$PKG_NAME-$PKG_VERSION.tar.xz"
+PKG_LICENSE="MIT"
+PKG_SITE="https://github.com/sselph/scraper"
+PKG_URL="https://github.com/sselph/scraper/releases/download/v$PKG_VERSION/scraper_rpi2.zip"
+PKG_SOURCE_DIR="scraper"
 PKG_DEPENDS_TARGET="toolchain"
 PKG_PRIORITY="optional"
 PKG_SECTION="sx05re"
-PKG_SHORTDESC="Gstreamer"
-PKG_LONGDESC="Gstreamer"
+PKG_SHORTDESC="A scraper for EmulationStation written in Go using hashing"
+PKG_LONGDESC="A scraper for EmulationStation written in Go using hashing"
 
 PKG_IS_ADDON="no"
 PKG_AUTORECONF="no" 
 
-#post_unpack() {
-#  rm -rf $BUILD/$PKG_NAME-*/
-#  git clone https://github.com/GStreamer/gstreamer.git $BUILD/$PKG_NAME-$PKG_VERSION/
-#  cd $BUILD/$PKG_NAME-$PKG_VERSION/
-#  git checkout $PKG_VERSION
-#  git submodule update --init
-#  cd $ROOT
-#}
-
-pre_configure_target() {
-  strip_lto
+pre_unpack() {
+mkdir -p $BUILD/$PKG_SOURCE_DIR-$PKG_VERSION
 }
 
+post_unpack() {
+mv $BUILD/scraper $BUILD/$PKG_SOURCE_DIR-$PKG_VERSION
+rm $BUILD/LICENSE.txt
+}
 
+make_target() {
+: not 
+}
+
+makeinstall_target() {
+mkdir -p $INSTALL/usr/bin/
+    cp $BUILD/$PKG_SOURCE_DIR-$PKG_VERSION/* $INSTALL/usr/bin/
+}
 

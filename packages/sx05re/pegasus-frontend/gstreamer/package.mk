@@ -18,33 +18,24 @@
 #  http://www.gnu.org/copyleft/gpl.html
 ################################################################################
 
-PKG_NAME="skyscraper"
-PKG_VERSION="62070a0"
+PKG_NAME="gstreamer"
+PKG_VERSION="1.12.0"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
-PKG_SITE="https://github.com/muldjord/skyscraper"
-PKG_URL="https://github.com/muldjord/skyscraper/archive/$PKG_VERSION.tar.gz"
-PKG_SOURCE_DIR="skyscraper*"
-PKG_DEPENDS_TARGET="toolchain qt-everywhere"
+PKG_SITE="https://gstreamer.freedesktop.org"
+PKG_URL="https://gstreamer.freedesktop.org/src/$PKG_NAME/$PKG_NAME-$PKG_VERSION.tar.xz"
+PKG_DEPENDS_TARGET="toolchain"
 PKG_PRIORITY="optional"
 PKG_SECTION="sx05re"
-PKG_SHORTDESC="Powerful and versatile game scraper written in c++"
-PKG_LONGDESC="Powerful and versatile game scraper written in c++ "
+PKG_SHORTDESC="Gstreamer"
+PKG_LONGDESC="Gstreamer"
 
 PKG_IS_ADDON="no"
 PKG_AUTORECONF="no" 
 
-
-make_target() {
-# Nasty hack to get qmake to work, if you change qt-everywhere version, make sure you change this.
-$BUILD/qt-everywhere-5.9.4/qtbase/qmake/qmake INSTALLDIR=${INSTALL}/usr/bin
-cd $PKG_BUILD
-make
-}
-
-makeinstall_target() {
-make install
+pre_configure_target() {
+  strip_lto
 }
 
 
