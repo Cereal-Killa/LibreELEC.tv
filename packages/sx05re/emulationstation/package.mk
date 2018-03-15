@@ -37,6 +37,7 @@ PKG_AUTORECONF="no"
 #PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET emulationstation-theme-tronkyfran"
 #PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET emulationstation-theme-crt"
 PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET emulationstation-theme-ComicBook"
+PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET emulationstation-theme-art-book"
 
 post_unpack() {
 mkdir -p $PKG_BUILD/external/pugixml 
