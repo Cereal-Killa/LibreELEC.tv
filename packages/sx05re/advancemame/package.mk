@@ -4,7 +4,7 @@
 ################################################################################
 
 PKG_NAME="advancemame"
-PKG_VERSION="7141805"
+PKG_VERSION="dcaec4b"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="MAME"
@@ -18,6 +18,9 @@ PKG_LONGDESC="A MAME and MESS port with an advanced video support for Arcade Mon
 PKG_IS_ADDON="no"
 PKG_AUTORECONF="no"
 
+post_unpack() {
+cp -r $PKG_DIR/.version $PKG_BUILD
+}
 
 make_target() {
 ./autogen.sh
