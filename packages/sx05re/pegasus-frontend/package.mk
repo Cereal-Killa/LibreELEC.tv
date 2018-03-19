@@ -19,7 +19,7 @@
 ################################################################################
 
 PKG_NAME="pegasus-frontend"
-PKG_VERSION="eba7520"
+PKG_VERSION="64f2995"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"

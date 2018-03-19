@@ -1,0 +1,16 @@
+diff -Naurp kodi-17.5-rc1-07424d3/xbmc/cores/VideoPlayer/VideoPlayer.cpp kodi-17.5-rc1-07424d3-patch/xbmc/cores/VideoPlayer/VideoPlayer.cpp
+--- kodi-17.5-rc1-07424d3/xbmc/cores/VideoPlayer/VideoPlayer.cpp	2017-09-20 08:31:30.000000000 +0300
++++ kodi-17.5-rc1-07424d3-patch/xbmc/cores/VideoPlayer/VideoPlayer.cpp	2017-09-20 09:16:11.000000000 +0300
+@@ -3644,6 +3644,12 @@ bool CVideoPlayer::OpenStream(CCurrentSt
+ 
+     if(m_pInputStream && m_pInputStream->IsStreamType(DVDSTREAM_TYPE_DVD))
+       hint.filename = "dvd";
++
++    if (hint.fpsrate / hint.fpsscale > 200)
++    {
++      hint.fpsrate = 60000;
++      hint.fpsscale = 1001;
++    }
+   }
+   else if(STREAM_SOURCE_MASK(source) == STREAM_SOURCE_VIDEOMUX)
+   {
