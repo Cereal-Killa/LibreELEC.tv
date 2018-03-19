@@ -99,10 +99,8 @@ fi
 #name of the file we need to put in the roms folder in your USB or SDCARD 
 ROMFILE="scottelecroms"
 
-
 # we look for the file in the rompath
 FULLPATHTOROMS="$(find /media/*/roms/ -name $ROMFILE -maxdepth 1)"
-
 
 if [[ -z "${FULLPATHTOROMS}" ]]; then
 # echo "can't find roms"
@@ -111,7 +109,6 @@ if [[ -z "${FULLPATHTOROMS}" ]]; then
       rm /storage/roms
       mv /storage/roms2 /storage/roms
  fi
-
     else
       mv /storage/roms /storage/roms2
       #echo "move the roms folder"
@@ -121,24 +118,40 @@ if [[ -z "${FULLPATHTOROMS}" ]]; then
 
        #we create the symlink to the roms in our USB
        ln -sf $PATHTOROMS /storage/roms
-
  fi
 
 #set reicast BIOS dir to point to /storage/roms/bios
 if [ ! -L /storage/.local/share/reicast/data ]; then
-mkdir -p /storage/.local/share/reicast 
-rm -rf /storage/.local/share/reicast/data
-ln -s /storage/roms/bios /storage/.local/share/reicast/data
+	mkdir -p /storage/.local/share/reicast 
+	rm -rf /storage/.local/share/reicast/data
+	ln -s /storage/roms/bios /storage/.local/share/reicast/data
 fi
-
 
 #hacky way to get samba on boot
 /usr/lib/samba/samba-config
 systemctl start smbd
 
-#make sure the requirement to run kodi is met.
-touch  /var/lock/start.kodi
+if [ ! -f /storage/.emulationstation/es_settings.cfg ]; then
+   cp /usr/config/emulationstation/es_settings.cfg /storage/.emulationstation/es_settings.cfg
+fi
 
- #if you don't want the emulator front end to start first, comment the next 3 lines
- #rm -rf /var/lock/start.kodi
- #/usr/bin/startfe.sh &
+DEFE=$(sed -n 's|\s*<string name="Sx05RE_BOOT" value="\(.*\)" />|\1|p' /storage/.emulationstation/es_settings.cfg)
+
+case "$DEFE" in
+"Kodi")
+	rm -rf /var/lock/start.retro
+	rm -rf /var/lock/start.games
+	touch  /var/lock/start.kodi
+	;;
+"Retroarch")
+	rm -rf /var/lock/start.kodi
+	rm -rf /var/lock/start.games
+	touch /var/lock/start.retro
+	systemctl start retroarch
+	;;
+*)
+	rm -rf /var/lock/start.kodi
+	rm -rf /var/lock/start.retro
+	/usr/bin/startfe.sh &
+	;;
+esac
