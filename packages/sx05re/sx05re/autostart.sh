@@ -138,7 +138,7 @@ fi
 DEFE=$(sed -n 's|\s*<string name="Sx05RE_BOOT" value="\(.*\)" />|\1|p' /storage/.emulationstation/es_settings.cfg)
 
 case "$DEFE" in
-"Kodi")
+*)
 	rm -rf /var/lock/start.retro
 	rm -rf /var/lock/start.games
 	touch  /var/lock/start.kodi
@@ -149,7 +149,7 @@ case "$DEFE" in
 	touch /var/lock/start.retro
 	systemctl start retroarch
 	;;
-*)
+"EmulationStation")
 	rm -rf /var/lock/start.kodi
 	rm -rf /var/lock/start.retro
 	/usr/bin/startfe.sh &

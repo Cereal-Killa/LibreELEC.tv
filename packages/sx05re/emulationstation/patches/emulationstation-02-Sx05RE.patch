@@ -9,15 +9,15 @@ diff U3 a/es-app/src/guis/GuiMenu.cpp b/es-app/src/guis/GuiMenu.cpp
  {
  	bool isFullUI = UIModeController::getInstance()->isUIModeFull();
  
-+		addEntry("Sx05RE", 0x777777FF, true, [this] { openSx05RESettings(); });
++		addEntry("ScottELEC", 0x777777FF, true, [this] { openScottELECSettings(); });
 +	
-+	// This will be removed/changed as it doesn't work, or works poorly on Sx05RE,try to use sselph scraper
++	// This will be removed/changed as it doesn't work, or works poorly on ScottELEC,try to use sselph scraper
  	if (isFullUI)
  		addEntry("SCRAPER", 0x777777FF, true, [this] { openScraperSettings(); });
 -
 -	addEntry("SOUND SETTINGS", 0x777777FF, true, [this] { openSoundSettings(); });
 -
-+    /* removed, no use for it on Sx05RE
++    /* removed, no use for it on ScottELEC
 +  	addEntry("SOUND SETTINGS", 0x777777FF, true, [this] { openSoundSettings(); });
 +    */
  
@@ -27,12 +27,12 @@ diff U3 a/es-app/src/guis/GuiMenu.cpp b/es-app/src/guis/GuiMenu.cpp
  	setPosition((Renderer::getScreenWidth() - mSize.x()) / 2, Renderer::getScreenHeight() * 0.15f);
  }
  
-+void GuiMenu::openSx05RESettings()
++void GuiMenu::openScottELECSettings()
 +{
-+	auto s = new GuiSettings(mWindow, "Sx05RE Settings");
++	auto s = new GuiSettings(mWindow, "ScottELEC Settings");
 +	
 +	
-+	auto sx05re_mame_def = std::make_shared< OptionListComponent<std::string> >(mWindow, "MAME EMULATOR", false);
++	auto ScottELEC_mame_def = std::make_shared< OptionListComponent<std::string> >(mWindow, "MAME EMULATOR", false);
 +		std::vector<std::string> mamechoices;
 +		mamechoices.push_back("AdvanceMame");
 +		mamechoices.push_back("mame2003");
@@ -43,15 +43,15 @@ diff U3 a/es-app/src/guis/GuiMenu.cpp b/es-app/src/guis/GuiMenu.cpp
 +		/*devices.push_back("Other");*/
 +		/*devices.push_back("Options");*/
 +		for (auto it = mamechoices.cbegin(); it != mamechoices.cend(); it++)
-+		sx05re_mame_def->add(*it, *it, Settings::getInstance()->getString("Sx05RE_MAME_CORE") == *it);
-+		s->addWithLabel("MAME EMULATOR", sx05re_mame_def);
-+		s->addSaveFunc([sx05re_mame_def] {
-+		/* runSystemCommand("echo "+sx05re_mame_def->getSelected()+" > /storage/.config/sx05re/mame"); */
-+			if (Settings::getInstance()->getString("Sx05RE_MAME_CORE") != sx05re_mame_def->getSelected())
-+				Settings::getInstance()->setString("Sx05RE_MAME_CORE", sx05re_mame_def->getSelected());
++		ScottELEC_mame_def->add(*it, *it, Settings::getInstance()->getString("ScottELEC_MAME_CORE") == *it);
++		s->addWithLabel("MAME EMULATOR", ScottELEC_mame_def);
++		s->addSaveFunc([ScottELEC_mame_def] {
++		/* runSystemCommand("echo "+ScottELEC_mame_def->getSelected()+" > /storage/.config/ScottELEC/mame"); */
++			if (Settings::getInstance()->getString("ScottELEC_MAME_CORE") != ScottELEC_mame_def->getSelected())
++				Settings::getInstance()->setString("ScottELEC_MAME_CORE", ScottELEC_mame_def->getSelected());
 +		});
 +	
-+	auto sx05re_fba_def = std::make_shared< OptionListComponent<std::string> >(mWindow, "FBA/NEO-GEO CORE", false);
++	auto ScottELEC_fba_def = std::make_shared< OptionListComponent<std::string> >(mWindow, "FBA/NEO-GEO CORE", false);
 +		std::vector<std::string> fbachoices;
 +		fbachoices.push_back("fbalpha");
 +		fbachoices.push_back("mame2003");
@@ -62,15 +62,15 @@ diff U3 a/es-app/src/guis/GuiMenu.cpp b/es-app/src/guis/GuiMenu.cpp
 +		/*devices.push_back("Other");*/
 +		/*devices.push_back("Options");*/
 +		for (auto it = fbachoices.cbegin(); it != fbachoices.cend(); it++)
-+		sx05re_fba_def->add(*it, *it, Settings::getInstance()->getString("Sx05RE_FBA_CORE") == *it);
-+		s->addWithLabel("FBA/NEO-GEO CORE", sx05re_fba_def);
-+		s->addSaveFunc([sx05re_fba_def] {
-+		/* runSystemCommand("echo "+sx05re_fba_def->getSelected()+" > /storage/.config/sx05re/mame"); */
-+			if (Settings::getInstance()->getString("Sx05RE_FBA_CORE") != sx05re_fba_def->getSelected())
-+				Settings::getInstance()->setString("Sx05RE_FBA_CORE", sx05re_fba_def->getSelected());
++		ScottELEC_fba_def->add(*it, *it, Settings::getInstance()->getString("ScottELEC_FBA_CORE") == *it);
++		s->addWithLabel("FBA/NEO-GEO CORE", ScottELEC_fba_def);
++		s->addSaveFunc([ScottELEC_fba_def] {
++		/* runSystemCommand("echo "+ScottELEC_fba_def->getSelected()+" > /storage/.config/ScottELEC/mame"); */
++			if (Settings::getInstance()->getString("ScottELEC_FBA_CORE") != ScottELEC_fba_def->getSelected())
++				Settings::getInstance()->setString("ScottELEC_FBA_CORE", ScottELEC_fba_def->getSelected());
 +		});
 +		
-+	auto sx05re_psp_def = std::make_shared< OptionListComponent<std::string> >(mWindow, "PSP EMULATOR", false);
++	auto ScottELEC_psp_def = std::make_shared< OptionListComponent<std::string> >(mWindow, "PSP EMULATOR", false);
 +		std::vector<std::string> pspchoices;
 +		pspchoices.push_back("PPSSPPSA");
 +		/*pspchoices.push_back("ppsspp");*/
@@ -81,16 +81,16 @@ diff U3 a/es-app/src/guis/GuiMenu.cpp b/es-app/src/guis/GuiMenu.cpp
 +		/*devices.push_back("Other");*/
 +		/*devices.push_back("Options");*/
 +		for (auto it = pspchoices.cbegin(); it != pspchoices.cend(); it++)
-+		sx05re_psp_def->add(*it, *it, Settings::getInstance()->getString("Sx05RE_PSP_CORE") == *it);
-+		s->addWithLabel("PSP EMULATOR", sx05re_psp_def);
-+		s->addSaveFunc([sx05re_psp_def] {
-+		/* runSystemCommand("echo "+sx05re_psp_def->getSelected()+" > /storage/.config/sx05re/psp"); */
-+			if (Settings::getInstance()->getString("Sx05RE_PSP_CORE") != sx05re_psp_def->getSelected())
-+				Settings::getInstance()->setString("Sx05RE_PSP_CORE", sx05re_psp_def->getSelected());
++		ScottELEC_psp_def->add(*it, *it, Settings::getInstance()->getString("ScottELEC_PSP_CORE") == *it);
++		s->addWithLabel("PSP EMULATOR", ScottELEC_psp_def);
++		s->addSaveFunc([ScottELEC_psp_def] {
++		/* runSystemCommand("echo "+ScottELEC_psp_def->getSelected()+" > /storage/.config/ScottELEC/psp"); */
++			if (Settings::getInstance()->getString("ScottELEC_PSP_CORE") != ScottELEC_psp_def->getSelected())
++				Settings::getInstance()->setString("ScottELEC_PSP_CORE", ScottELEC_psp_def->getSelected());
 +		});	
 +	
 +	
-+	auto sx05re_n64_def = std::make_shared< OptionListComponent<std::string> >(mWindow, "N64 CORE", false);
++	auto ScottELEC_n64_def = std::make_shared< OptionListComponent<std::string> >(mWindow, "N64 CORE", false);
 +		std::vector<std::string> n64choices;
 +		n64choices.push_back("mupen64plus");
 +		n64choices.push_back("parallel-n64");
@@ -102,16 +102,16 @@ diff U3 a/es-app/src/guis/GuiMenu.cpp b/es-app/src/guis/GuiMenu.cpp
 +		/*devices.push_back("Other");*/
 +		/*devices.push_back("Options");*/
 +		for (auto it = n64choices.cbegin(); it != n64choices.cend(); it++)
-+		sx05re_n64_def->add(*it, *it, Settings::getInstance()->getString("Sx05RE_N64_CORE") == *it);
-+		s->addWithLabel("N64 CORE", sx05re_n64_def);
-+		s->addSaveFunc([sx05re_n64_def] {
-+		/* runSystemCommand("echo "+sx05re_n64_def->getSelected()+" > /storage/.config/sx05re/nes"); */
-+			if (Settings::getInstance()->getString("Sx05RE_N64_CORE") != sx05re_n64_def->getSelected())
-+				Settings::getInstance()->setString("Sx05RE_N64_CORE", sx05re_n64_def->getSelected());
++		ScottELEC_n64_def->add(*it, *it, Settings::getInstance()->getString("ScottELEC_N64_CORE") == *it);
++		s->addWithLabel("N64 CORE", ScottELEC_n64_def);
++		s->addSaveFunc([ScottELEC_n64_def] {
++		/* runSystemCommand("echo "+ScottELEC_n64_def->getSelected()+" > /storage/.config/ScottELEC/nes"); */
++			if (Settings::getInstance()->getString("ScottELEC_N64_CORE") != ScottELEC_n64_def->getSelected())
++				Settings::getInstance()->setString("ScottELEC_N64_CORE", ScottELEC_n64_def->getSelected());
 +		});
 +	
 +			
-+	auto sx05re_nes_def = std::make_shared< OptionListComponent<std::string> >(mWindow, "NES/FC/FDS CORE", false);
++	auto ScottELEC_nes_def = std::make_shared< OptionListComponent<std::string> >(mWindow, "NES/FC/FDS CORE", false);
 +		std::vector<std::string> neschoices;
 +		neschoices.push_back("fceumm");
 +		neschoices.push_back("nestopia");
@@ -123,16 +123,16 @@ diff U3 a/es-app/src/guis/GuiMenu.cpp b/es-app/src/guis/GuiMenu.cpp
 +		/*devices.push_back("Other");*/
 +		/*devices.push_back("Options");*/
 +		for (auto it = neschoices.cbegin(); it != neschoices.cend(); it++)
-+		sx05re_nes_def->add(*it, *it, Settings::getInstance()->getString("Sx05RE_NES_CORE") == *it);
-+		s->addWithLabel("NES/FC/FDS CORE", sx05re_nes_def);
-+		s->addSaveFunc([sx05re_nes_def] {
-+		/* runSystemCommand("echo "+sx05re_nes_def->getSelected()+" > /storage/.config/sx05re/nes"); */
-+			if (Settings::getInstance()->getString("Sx05RE_NES_CORE") != sx05re_nes_def->getSelected())
-+				Settings::getInstance()->setString("Sx05RE_NES_CORE", sx05re_nes_def->getSelected());
++		ScottELEC_nes_def->add(*it, *it, Settings::getInstance()->getString("ScottELEC_NES_CORE") == *it);
++		s->addWithLabel("NES/FC/FDS CORE", ScottELEC_nes_def);
++		s->addSaveFunc([ScottELEC_nes_def] {
++		/* runSystemCommand("echo "+ScottELEC_nes_def->getSelected()+" > /storage/.config/ScottELEC/nes"); */
++			if (Settings::getInstance()->getString("ScottELEC_NES_CORE") != ScottELEC_nes_def->getSelected())
++				Settings::getInstance()->setString("ScottELEC_NES_CORE", ScottELEC_nes_def->getSelected());
 +		});
 +		
 +		
-+	auto sx05re_snes_def = std::make_shared< OptionListComponent<std::string> >(mWindow, "SNES CORE", false);
++	auto ScottELEC_snes_def = std::make_shared< OptionListComponent<std::string> >(mWindow, "SNES CORE", false);
 +		std::vector<std::string> sneschoices;
 +		sneschoices.push_back("snes9x");
 +		sneschoices.push_back("snes9x2002");
@@ -144,15 +144,15 @@ diff U3 a/es-app/src/guis/GuiMenu.cpp b/es-app/src/guis/GuiMenu.cpp
 +		/*devices.push_back("Other");*/
 +		/*devices.push_back("Options");*/
 +		for (auto it = sneschoices.cbegin(); it != sneschoices.cend(); it++)
-+		sx05re_snes_def->add(*it, *it, Settings::getInstance()->getString("Sx05RE_SNES_CORE") == *it);
-+		s->addWithLabel("SNES CORE", sx05re_snes_def);
-+		s->addSaveFunc([sx05re_snes_def] {
-+		/* runSystemCommand("echo "+sx05re_snes_def->getSelected()+" > /storage/.config/sx05re/snes"); */
-+			if (Settings::getInstance()->getString("Sx05RE_SNES_CORE") != sx05re_snes_def->getSelected())
-+				Settings::getInstance()->setString("Sx05RE_SNES_CORE", sx05re_snes_def->getSelected());
++		ScottELEC_snes_def->add(*it, *it, Settings::getInstance()->getString("ScottELEC_SNES_CORE") == *it);
++		s->addWithLabel("SNES CORE", ScottELEC_snes_def);
++		s->addSaveFunc([ScottELEC_snes_def] {
++		/* runSystemCommand("echo "+ScottELEC_snes_def->getSelected()+" > /storage/.config/ScottELEC/snes"); */
++			if (Settings::getInstance()->getString("ScottELEC_SNES_CORE") != ScottELEC_snes_def->getSelected())
++				Settings::getInstance()->setString("ScottELEC_SNES_CORE", ScottELEC_snes_def->getSelected());
 +		});
 +	
-+	auto sx05re_gen_def = std::make_shared< OptionListComponent<std::string> >(mWindow, "GENESIS/MS/CD CORE", false);
++	auto ScottELEC_gen_def = std::make_shared< OptionListComponent<std::string> >(mWindow, "GENESIS/MS/CD CORE", false);
 +		std::vector<std::string> genesischoices;
 +		genesischoices.push_back("genesis_plus_gx");
 +		genesischoices.push_back("picodrive");
@@ -164,15 +164,15 @@ diff U3 a/es-app/src/guis/GuiMenu.cpp b/es-app/src/guis/GuiMenu.cpp
 +		/*devices.push_back("Other");*/
 +		/*devices.push_back("Options");*/
 +		for (auto it = genesischoices.cbegin(); it != genesischoices.cend(); it++)
-+		sx05re_gen_def->add(*it, *it, Settings::getInstance()->getString("Sx05RE_GEN_CORE") == *it);
-+		s->addWithLabel("GENESIS/MS/CD CORE", sx05re_gen_def);
-+		s->addSaveFunc([sx05re_gen_def] {
-+			/* runSystemCommand("echo "+sx05re_gen_def->getSelected()+" > /storage/.config/sx05re/snes"); */
-+			if (Settings::getInstance()->getString("Sx05RE_GEN_CORE") != sx05re_gen_def->getSelected())
-+				Settings::getInstance()->setString("Sx05RE_GEN_CORE", sx05re_gen_def->getSelected());
++		ScottELEC_gen_def->add(*it, *it, Settings::getInstance()->getString("ScottELEC_GEN_CORE") == *it);
++		s->addWithLabel("GENESIS/MS/CD CORE", ScottELEC_gen_def);
++		s->addSaveFunc([ScottELEC_gen_def] {
++			/* runSystemCommand("echo "+ScottELEC_gen_def->getSelected()+" > /storage/.config/ScottELEC/snes"); */
++			if (Settings::getInstance()->getString("ScottELEC_GEN_CORE") != ScottELEC_gen_def->getSelected())
++				Settings::getInstance()->setString("ScottELEC_GEN_CORE", ScottELEC_gen_def->getSelected());
 +		});
 +		
-+	auto sx05re_gba_def = std::make_shared< OptionListComponent<std::string> >(mWindow, "GBA CORE", false);
++	auto ScottELEC_gba_def = std::make_shared< OptionListComponent<std::string> >(mWindow, "GBA CORE", false);
 +		std::vector<std::string> gbachoices;
 +		gbachoices.push_back("mgba");
 +		gbachoices.push_back("gpsp");
@@ -184,15 +184,15 @@ diff U3 a/es-app/src/guis/GuiMenu.cpp b/es-app/src/guis/GuiMenu.cpp
 +		/*devices.push_back("Other");*/
 +		/*devices.push_back("Options");*/
 +		for (auto it = gbachoices.cbegin(); it != gbachoices.cend(); it++)
-+		sx05re_gba_def->add(*it, *it, Settings::getInstance()->getString("Sx05RE_GBA_CORE") == *it);
-+		s->addWithLabel("GBA CORE", sx05re_gba_def);
-+		s->addSaveFunc([sx05re_gba_def] {
-+			/* runSystemCommand("echo "+sx05re_gba_def->getSelected()+" > /storage/.config/sx05re/snes"); */
-+			if (Settings::getInstance()->getString("Sx05RE_GBA_CORE") != sx05re_gba_def->getSelected())
-+				Settings::getInstance()->setString("Sx05RE_GBA_CORE", sx05re_gba_def->getSelected());
++		ScottELEC_gba_def->add(*it, *it, Settings::getInstance()->getString("ScottELEC_GBA_CORE") == *it);
++		s->addWithLabel("GBA CORE", ScottELEC_gba_def);
++		s->addSaveFunc([ScottELEC_gba_def] {
++			/* runSystemCommand("echo "+ScottELEC_gba_def->getSelected()+" > /storage/.config/ScottELEC/snes"); */
++			if (Settings::getInstance()->getString("ScottELEC_GBA_CORE") != ScottELEC_gba_def->getSelected())
++				Settings::getInstance()->setString("ScottELEC_GBA_CORE", ScottELEC_gba_def->getSelected());
 +		});
 +		
-+	auto sx05re_gbc_def = std::make_shared< OptionListComponent<std::string> >(mWindow, "GB/GBC CORE", false);
++	auto ScottELEC_gbc_def = std::make_shared< OptionListComponent<std::string> >(mWindow, "GB/GBC CORE", false);
 +		std::vector<std::string> gbcchoices;
 +		gbcchoices.push_back("gambatte");
 +		gbcchoices.push_back("gearboy");
@@ -204,26 +204,26 @@ diff U3 a/es-app/src/guis/GuiMenu.cpp b/es-app/src/guis/GuiMenu.cpp
 +		/*devices.push_back("Other");*/
 +		/*devices.push_back("Options");*/
 +		for (auto it = gbcchoices.cbegin(); it != gbcchoices.cend(); it++)
-+		sx05re_gbc_def->add(*it, *it, Settings::getInstance()->getString("Sx05RE_GBC_CORE") == *it);
-+		s->addWithLabel("GB/GBC CORE", sx05re_gbc_def);
-+		s->addSaveFunc([sx05re_gbc_def] {
-+			/* runSystemCommand("echo "+sx05re_gbc_def->getSelected()+" > /storage/.config/sx05re/snes"); */
-+			if (Settings::getInstance()->getString("Sx05RE_GBC_CORE") != sx05re_gbc_def->getSelected())
-+				Settings::getInstance()->setString("Sx05RE_GBC_CORE", sx05re_gbc_def->getSelected());
++		ScottELEC_gbc_def->add(*it, *it, Settings::getInstance()->getString("ScottELEC_GBC_CORE") == *it);
++		s->addWithLabel("GB/GBC CORE", ScottELEC_gbc_def);
++		s->addSaveFunc([ScottELEC_gbc_def] {
++			/* runSystemCommand("echo "+ScottELEC_gbc_def->getSelected()+" > /storage/.config/ScottELEC/snes"); */
++			if (Settings::getInstance()->getString("ScottELEC_GBC_CORE") != ScottELEC_gbc_def->getSelected())
++				Settings::getInstance()->setString("ScottELEC_GBC_CORE", ScottELEC_gbc_def->getSelected());
 +		});
 +	
-+		auto sx05re_boot_def = std::make_shared< OptionListComponent<std::string> >(mWindow, "START AT BOOT", false);
++		auto ScottELEC_boot_def = std::make_shared< OptionListComponent<std::string> >(mWindow, "START AT BOOT", false);
 +		std::vector<std::string> devices;
 +		devices.push_back("Emulationstation");
 +		devices.push_back("Kodi");
 +		devices.push_back("Retroarch");
 +		for (auto it = devices.cbegin(); it != devices.cend(); it++)
-+		sx05re_boot_def->add(*it, *it, Settings::getInstance()->getString("Sx05RE_BOOT") == *it);
-+		s->addWithLabel("START AT BOOT", sx05re_boot_def);
-+		s->addSaveFunc([sx05re_boot_def] {
-+			/*runSystemCommand("echo "+sx05re_boot_def->getSelected()+" > /storage/.config/def_fe");*/
-+			if (Settings::getInstance()->getString("Sx05RE_BOOT") != sx05re_boot_def->getSelected())
-+				Settings::getInstance()->setString("Sx05RE_BOOT", sx05re_boot_def->getSelected());
++		ScottELEC_boot_def->add(*it, *it, Settings::getInstance()->getString("ScottELEC_BOOT") == *it);
++		s->addWithLabel("START AT BOOT", ScottELEC_boot_def);
++		s->addSaveFunc([ScottELEC_boot_def] {
++			/*runSystemCommand("echo "+ScottELEC_boot_def->getSelected()+" > /storage/.config/def_fe");*/
++			if (Settings::getInstance()->getString("ScottELEC_BOOT") != ScottELEC_boot_def->getSelected())
++				Settings::getInstance()->setString("ScottELEC_BOOT", ScottELEC_boot_def->getSelected());
 +		});
 +				
 +	Window* window = mWindow;
@@ -236,7 +236,7 @@ diff U3 a/es-app/src/guis/GuiMenu.cpp b/es-app/src/guis/GuiMenu.cpp
 +	row.elements.clear();
 +
 +	row.makeAcceptInputHandler([window] {
-+		window->pushGui(new GuiMsgBox(window, "!!!!!!WARNING THIS WILL DELETE ALL CONFIGS/ADDONS!!!!!!!!!! RESET Sx05RE/KODI TO DEFAULT CONFIG AND RESTART?", "YES",
++		window->pushGui(new GuiMsgBox(window, "!!!!!!WARNING THIS WILL DELETE ALL CONFIGS/ADDONS!!!!!!!!!! RESET ScottELEC/KODI TO DEFAULT CONFIG AND RESTART?", "YES",
 +				[] { 
 +				runSystemCommand("/usr/bin/clearconfig.sh");
 +				}, "NO", nullptr));
@@ -351,7 +351,7 @@ diff U3 a/es-app/src/guis/GuiMenu.cpp b/es-app/src/guis/GuiMenu.cpp
  		}, "NO", nullptr));
  	});
 -	row.addElement(std::make_shared<TextComponent>(window, "RESTART SYSTEM", Font::get(FONT_SIZE_MEDIUM), 0x777777FF), true);
-+	row.addElement(std::make_shared<TextComponent>(window, "RESTART Sx05RE", Font::get(FONT_SIZE_MEDIUM), 0x777777FF), true);
++	row.addElement(std::make_shared<TextComponent>(window, "RESTART ScottELEC", Font::get(FONT_SIZE_MEDIUM), 0x777777FF), true);
  	s->addRow(row);
  
  	row.elements.clear();
@@ -364,7 +364,7 @@ diff U3 a/es-app/src/guis/GuiMenu.cpp b/es-app/src/guis/GuiMenu.cpp
  		}, "NO", nullptr));
  	});
 -	row.addElement(std::make_shared<TextComponent>(window, "SHUTDOWN SYSTEM", Font::get(FONT_SIZE_MEDIUM), 0x777777FF), true);
-+	row.addElement(std::make_shared<TextComponent>(window, "SHUTDOWN Sx05RE", Font::get(FONT_SIZE_MEDIUM), 0x777777FF), true);
++	row.addElement(std::make_shared<TextComponent>(window, "SHUTDOWN ScottELEC", Font::get(FONT_SIZE_MEDIUM), 0x777777FF), true);
  	s->addRow(row);
  
  	mWindow->pushGui(s);
@@ -373,7 +373,7 @@ diff U3 a/es-app/src/guis/GuiMenu.cpp b/es-app/src/guis/GuiMenu.cpp
  	mVersion.setFont(Font::get(FONT_SIZE_SMALL));
  	mVersion.setColor(0x5E5E5EFF);
 -	mVersion.setText("EMULATIONSTATION V" + Utils::String::toUpper(PROGRAM_VERSION_STRING) + buildDate);
-+	mVersion.setText("EMULATIONSTATION V" + Utils::String::toUpper(PROGRAM_VERSION_STRING) + buildDate +" SX05RE v1.8.5");
++	mVersion.setText("EMULATIONSTATION V" + Utils::String::toUpper(PROGRAM_VERSION_STRING) + buildDate +" ScottELEC v1.8.5");
  	mVersion.setHorizontalAlignment(ALIGN_CENTER);
  	addChild(&mVersion);
  }
@@ -383,7 +383,7 @@ diff U3 a/es-app/src/guis/GuiMenu.cpp b/es-app/src/guis/GuiMenu.cpp
  	void openScreensaverOptions();
  	void openSoundSettings();
  	void openUISettings();
-+	void openSx05RESettings();
++	void openScottELECSettings();
  
  	MenuComponent mMenu;
  	TextComponent mVersion;
