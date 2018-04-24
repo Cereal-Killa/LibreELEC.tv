@@ -28,4 +28,7 @@ rm -rf $CONFIG_DIR2/*
 touch $CONFIG_DIR2/done
 fi 
 
+# Kodi seems to set its own FB settings for 720p, so we revert them to one that work on ES, I use all resolutions just in case :) 
+/usr/bin/setres.sh
+
 exit 0

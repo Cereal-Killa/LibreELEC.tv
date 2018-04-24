@@ -1,3 +1,14 @@
+From 6a7491c34188ff41e3c46b9c42ed5b76d1200ed2 Mon Sep 17 00:00:00 2001
+From: kszaq <kszaquitto@gmail.com>
+Date: Thu, 31 Aug 2017 21:24:14 +0200
+Subject: [PATCH] Build only EGL, GLESv1 and GLESv2
+
+---
+ hybris/Makefile.am       |   5 +-
+ hybris/configure.ac      |  17 ------
+ hybris/tests/Makefile.am | 150 +----------------------------------------------
+ 3 files changed, 2 insertions(+), 170 deletions(-)
+
 diff --git a/Makefile.am b/Makefile.am
 index 906140e..bb1f145 100644
 --- a/Makefile.am
@@ -6,8 +17,8 @@ index 906140e..bb1f145 100644
  if HAS_ANDROID_5_0_0
  SUBDIRS += libsync
  endif
--SUBDIRS += egl glesv1 glesv2 ui sf input camera vibrator media wifi
-+SUBDIRS += egl glesv1 glesv2
+-SUBDIRS += egl glesv1 glesv2 glesv3 ui sf input camera vibrator media wifi
++SUBDIRS += egl glesv1 glesv2 glesv3
  
 -if HAS_LIBNFC_NXP_HEADERS
 -SUBDIRS += libnfc_nxp libnfc_ndef_nxp
